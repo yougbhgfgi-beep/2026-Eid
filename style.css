@@ -28,7 +28,7 @@
 html,
 body {
     height: 100%;
-    overflow: hidden;
+    /* overflow: hidden removed to allow native scrolling on some devices if #main fails */
     background: var(--night);
 }
 
@@ -521,10 +521,14 @@ body {
     inset: 0;
     z-index: 10;
     display: none;
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
     scroll-behavior: smooth;
     scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    /* Fixes iOS momentum scrolling */
+    overscroll-behavior-y: contain;
+    /* Prevents pull-to-refresh breaking the layout */
 }
 
 #main::-webkit-scrollbar {
