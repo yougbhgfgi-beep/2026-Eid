@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>🌙 عيد الفطر — رسالة من القلب</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Scheherazade+New:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- CURSOR -->
+  <div id="cur">🌙</div>
+  <div id="cur-halo"></div>
+
+  <!-- LAYERS -->
+  <canvas id="skyC"></canvas>
+  <canvas id="partC"></canvas>
+  <div id="patternOverlay"></div>
+
+  <!-- LANTERNS LEFT -->
+  <div class="lantern-wrap left">
+    <div class="lantern" style="left:15px;top:0">
+      <div class="lantern-string" style="--sh:50px"></div>
+      <div class="lantern-body"
+        style="--lw:34px;--lh:50px;--lc1:#8B0000;--lc2:#5a0000;--lglow:rgba(255,80,0,0.4);--lspd:4.5s;--ra:-5deg;--rb:5deg;">
+      </div>
+      <div class="lantern-glow" style="--lw:34px;--lglow:rgba(255,80,0,0.2)"></div>
+    </div>
+    <div class="lantern" style="left:65px;top:0">
+      <div class="lantern-string" style="--sh:80px"></div>
+      <div class="lantern-body"
+        style="--lw:28px;--lh:42px;--lc1:#1a4a00;--lc2:#0d2e00;--lglow:rgba(100,200,0,0.3);--lspd:5.5s;--ra:-3deg;--rb:4deg;">
+      </div>
+      <div class="lantern-glow" style="--lw:28px;--lglow:rgba(100,200,0,0.15)"></div>
+    </div>
+  </div>
+
+  <!-- LANTERNS RIGHT -->
+  <div class="lantern-wrap right">
+    <div class="lantern" style="right:15px;top:0">
+      <div class="lantern-string" style="--sh:65px"></div>
+      <div class="lantern-body"
+        style="--lw:32px;--lh:48px;--lc1:#7a4a00;--lc2:#4a2e00;--lglow:rgba(200,146,42,0.4);--lspd:5s;--ra:4deg;--rb:-4deg;">
+      </div>
+      <div class="lantern-glow" style="--lw:32px;--lglow:rgba(200,146,42,0.2)"></div>
+    </div>
+    <div class="lantern" style="right:65px;top:0">
+      <div class="lantern-string" style="--sh:40px"></div>
+      <div class="lantern-body"
+        style="--lw:26px;--lh:40px;--lc1:#4a0050;--lc2:#2e0032;--lglow:rgba(180,0,200,0.3);--lspd:6s;--ra:-4deg;--rb:4deg;">
+      </div>
+      <div class="lantern-glow" style="--lw:26px;--lglow:rgba(180,0,200,0.15)"></div>
+    </div>
+  </div>
+
+  <div id="toast"></div>
+
+  <!-- ════════════ ANTI-THEFT WATERMARK ════════════ -->
+  <div id="anti-theft-mark">
+    <i data-lucide="fingerprint"></i>
+    <span>بصمة حب</span>
+  </div>
+
+  <!-- ════════════ FINGERPRINT PAGE ════════════ -->
+  <div id="fingerprint-page">
+    <h1 class="fp-title" style="font-family:'Amiri', serif;">بصمة حب</h1>
+    <p class="fp-sub" style="font-family:'Amiri', serif;">رسالة خاصة — لشخص واحد فقط</p>
+    <div class="fp-scanner" id="fp-scanner">
+      <i data-lucide="fingerprint" class="fp-icon"></i>
+      <div class="fp-scan-line"></div>
+    </div>
+    <p class="fp-msg" id="fp-msg" style="font-family:'Amiri', serif;">اضغط مطولاً للدخول...</p>
+  </div>
+
+  <!-- ════════════ LOGIN ════════════ -->
+  <div id="loginPage">
+    <span class="login-crescent">🌙</span>
+    <div class="login-stars">✦ ✦ ✦</div>
+    <div class="login-title">عيد الفطر المبارك</div>
+    <div class="login-sub">رسالة خاصة — لشخص واحد فقط</div>
+    <div class="login-ornament">❧ ✦ ❧</div>
+    <div class="pw-wrap">
+      <input type="password" id="pwIn" placeholder="● ● ● ●" autocomplete="off">
+    </div>
+    <button class="enter-btn" onclick="login()">ادخل إلى قلبي 🌙</button>
+    <div class="login-err" id="lpErr">☽ كلمة المرور خاطئة ☾</div>
+    <div class="login-divider"></div>
+  </div>
+
+  <!-- ════════════ NAV ════════════ -->
+  <div id="nav">
+    <div class="nd a" onclick="go(0)"></div>
+    <div class="nd" onclick="go(1)"></div>
+    <div class="nd" onclick="go(2)"></div>
+    <div class="nd" onclick="go(3)"></div>
+    <div class="nd" onclick="go(4)"></div>
+    <div class="nd" onclick="go(5)"></div>
+    <div class="nd" onclick="go(6)"></div>
+    <div class="nd" onclick="go(7)"></div>
+    <div class="nd" onclick="go(8)"></div>
+    <div class="nd" onclick="go(9)"></div>
+    <div class="nd" onclick="go(10)"></div>
+  </div>
+
+  <!-- ════════════ MAIN ════════════ -->
+  <div id="main">
+
+    <!-- S1: OPENING -->
+    <section id="s1">
+      <span class="big-crescent">☽</span>
+      <span class="s1-moon fu">🌙</span>
+      <div class="eid-greeting fu">عيد الفطر المبارك</div>
+      <h1 class="fu">كل عام وأنت<br>الأقرب إلى قلبي</h1>
+      <p class="arabic-body fu">
+        في هذا العيد المبارك، وبين تكبيرات الفجر وعطر البخور —<br>
+        لا يخطر على قلبي إلا أنت
+      </p>
+      <div class="orn fu"><span></span>❧ ✦ ❧<span></span></div>
+      <button class="gbtn fu" onclick="go(1)">✦ ابدأ الرحلة ✦</button>
+      <div class="scroll-hint">
+        <span>مرّر للأسفل</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M12 5v14M5 12l7 7 7-7" />
+        </svg>
+      </div>
+    </section>
+
+    <!-- S2: COUNTER -->
+    <section id="s2">
+      <div class="tag fu">⏳ منذ بداية قصتنا</div>
+      <h1 class="fu">كل لحظة معك<br>هي نعمة من الله</h1>
+      <div class="counter-grid fu">
+        <div class="c-cell"><span class="c-n" id="cd">00</span><span class="c-l">يوم</span></div>
+        <div class="c-cell"><span class="c-n" id="ch">00</span><span class="c-l">ساعة</span></div>
+        <div class="c-cell"><span class="c-n" id="cm">00</span><span class="c-l">دقيقة</span></div>
+        <div class="c-cell"><span class="c-n" id="cs">00</span><span class="c-l">ثانية</span></div>
+      </div>
+      <div class="total-msg fu" id="totalMsg"></div>
+      <div class="orn fu"><span></span>✦<span></span></div>
+      <button class="gbtn fu" onclick="go(2)">💌 رسالة القلب</button>
+    </section>
+
+    <!-- S3: LOVE LETTER -->
+    <section id="s3">
+      <div class="tag fu">💌 رسالة</div>
+      <div class="letter-wrap fu">
+        <div class="letter-top-ornament">🌙 ✦ 🌙</div>
+        <div class="letter-salutation">حبيبي / حبيبتي،</div>
+        <p class="letter-body">
+          في ليلة رؤية الهلال، حين يبتهج الناس بقدوم العيد —<br>
+          يبتهج قلبي بشيء آخر: بأنك موجود/ة في حياتي.<br><br>
+          <b>الأعياد من دونك مجرد أيام</b>، أما معك فكل يوم عيد.<br><br>
+          أسأل الله أن يديم عليّ نعمة وجودك، وأن يجمعنا في كل عيد قادم — وأكثر.
+        </p>
+        <div class="letter-sig">
+          <span>🌙</span>
+          <span style="font-family:'Amiri',serif;font-style:italic;color:rgba(200,146,42,.55);">دائماً لك</span>
+        </div>
+      </div>
+      <button class="gbtn fu" style="margin-top:22px" onclick="go(3)">📖 شعر لك</button>
+    </section>
+
+    <!-- S4: POEM -->
+    <section id="s4">
+      <div class="tag fu">📖 شعر</div>
+      <h1 class="fu">قلت فيك</h1>
+      <div class="poem-card fu">
+        <span class="poem-line">يا هلالي في ليالي العيد</span>
+        <div class="poem-break"></div>
+        <span class="poem-line">كيف أوصف ما يجري في فؤادي</span>
+        <div class="poem-break"></div>
+        <span class="poem-line">حين تبتسم تضيء الكون حولي</span>
+        <div class="poem-break"></div>
+        <span class="poem-line">وتذوب الغمة عن أيامي</span>
+        <div class="poem-break"></div>
+        <span class="poem-line">أنت عيدي قبل العيد بعمر</span>
+        <div class="poem-break"></div>
+        <span class="poem-line">وهلالي في سماء الأبد 🌙</span>
+        <div class="poem-author">— كُتب لك وحدك</div>
+      </div>
+      <button class="gbtn fu" style="margin-top:22px" onclick="go(4)">🖼️ ذكرياتنا</button>
+    </section>
+
+    <!-- S5: MEMORIES -->
+    <section id="s5">
+      <div class="tag fu">🖼️ لحظات</div>
+      <h1 class="fu">ذكرياتنا في العيد</h1>
+      <div class="mem-grid fu">
+        <div class="mem-card" onclick="toast('تلك الليلة الجميلة 🌙')">
+          <div class="mem-emoji">🌙</div>
+          <div class="mem-label">ليلة الهلال</div>
+        </div>
+        <div class="mem-card" onclick="toast('أحلى كعك في العالم 🍪')">
+          <div class="mem-emoji">🍪</div>
+          <div class="mem-label">كعك العيد</div>
+        </div>
+        <div class="mem-card" onclick="toast('صلاة الفجر معاً ✨')">
+          <div class="mem-emoji">🕌</div>
+          <div class="mem-label">فجر العيد</div>
+        </div>
+        <div class="mem-card" onclick="toast('أنت هديتي الكبرى 🎁')">
+          <div class="mem-emoji">🎁</div>
+          <div class="mem-label">أجمل هدية</div>
+        </div>
+      </div>
+      <button class="gbtn fu" onclick="go(5)">💝 اختبار الحب</button>
+    </section>
+
+    <!-- S6: QUIZ -->
+    <section id="s6">
+      <div class="tag fu">💝 اختبار</div>
+      <h1 class="fu">كم تعرفني؟</h1>
+      <div class="quiz-wrap fu">
+        <div class="quiz-sc">✦ &nbsp;<span id="qSc">0</span> / 3&nbsp; ✦</div>
+        <div class="quiz-q" id="qQ">جاري التحضير...</div>
+        <div class="quiz-opts" id="qOp"></div>
+        <div class="quiz-fb" id="qFb"></div>
+      </div>
+    </section>
+
+    <!-- S7: LOVE METER -->
+    <section id="s7">
+      <div class="tag fu">💘 حاسبة الحب</div>
+      <h1 class="fu">نسبة الحب بيننا</h1>
+      <div class="meter-wrap fu">
+        <div class="meter-ins">
+          <input class="m-in" id="mn1" placeholder="اسمك" value="أنا">
+          <span class="m-sep">🌙</span>
+          <input class="m-in" id="mn2" placeholder="اسمه/ها" value="حبيبي">
+        </div>
+        <button class="m-calc" onclick="calcLove()">✦ احسب الحب ✦</button>
+        <div class="meter-res" id="mRes">
+          <div class="meter-pct" id="mPct"></div>
+          <div class="meter-track">
+            <div class="meter-bar" id="mBar"></div>
+          </div>
+          <div class="meter-msg" id="mMsg"></div>
+        </div>
+      </div>
+      <button class="gbtn fu" style="margin-top:22px" onclick="go(7)">🌟 أمنياتي لك</button>
+    </section>
+
+    <!-- S8: WISHES -->
+    <section id="s8">
+      <canvas id="fwC"></canvas>
+      <div class="tag fu" style="position:relative;z-index:2;">🌟 أمنياتي</div>
+      <div class="wishes-frame fu">
+        <div class="wish-item">
+          <span class="wish-text">أتمنى لك عيداً مليئاً بالفرح والبهجة والسرور</span>
+          <span class="wish-icon">🌙</span>
+        </div>
+        <div class="wish-item">
+          <span class="wish-text">وأن يكون هذا العيد بداية أجمل ما يأتي في حياتنا</span>
+          <span class="wish-icon">✨</span>
+        </div>
+        <div class="wish-item">
+          <span class="wish-text">وأن يحفظك الله في كل لحظة ويسعدك دائماً</span>
+          <span class="wish-icon">🕌</span>
+        </div>
+        <div class="wish-item">
+          <span class="wish-text">وأن تعيش كل أعياد العمر وأنت بأتم الصحة والعافية</span>
+          <span class="wish-icon">💛</span>
+        </div>
+        <div class="wish-item">
+          <span class="wish-text">وأن تظل دائماً العيد الأكبر في قلبي 🌙</span>
+          <span class="wish-icon">🌸</span>
+        </div>
+      </div>
+      <button class="fw-btn fu" onclick="shootFireworks()">✦ أطلق ألعاب نارية ✦</button>
+      <button class="gbtn fu" style="margin-top:12px;position:relative;z-index:2;" onclick="go(8)">🏮 الفانوس
+        المفاجأة</button>
+    </section>
+
+    <!-- S9: GIFT / FANOOS -->
+    <section id="s9">
+      <div class="tag fu">🏮 مفاجأة</div>
+      <h1 class="fu">فانوسك الخاص</h1>
+      <p class="arabic-body fu">اضغط على الفانوس لتفتح المفاجأة</p>
+      <div class="fanoos-wrap fu" id="fanoos" onclick="openFanoos()">
+        <div class="fanoos-top"></div>
+        <div class="fanoos-string"></div>
+        <div class="fanoos-body">🏮</div>
+        <div class="fanoos-bot"></div>
+        <div class="fanoos-glow"></div>
+      </div>
+      <div class="gift-msg-overlay" id="giftOverlay">
+        <div class="gift-msg-text">
+          <em>أنت نور حياتي</em><br><br>
+          كما يضيء الفانوس الليل المظلم —<br>
+          أضأت أنت كل زوايا قلبي وحياتي.<br><br>
+          كل عام وأنت فرحتي الكبرى 🌙✨
+        </div>
+        <button class="close-msg" onclick="event.stopPropagation();closeGift()">✦ أغلق</button>
+      </div>
+      <button class="gbtn fu" style="margin-top:20px" onclick="go(9)">🌌 سماء عيدنا</button>
+    </section>
+
+    <!-- S10: STAR MAP -->
+    <section id="s10">
+      <canvas id="sCvs"></canvas>
+      <div class="star-content">
+        <div class="tag fu">🌌 سماء العيد</div>
+        <h1 class="fu">نجومنا في ليلة العيد</h1>
+        <p class="arabic-body fu" style="position:relative;z-index:2;">
+          في تلك الليلة المباركة حين طلع الهلال،<br>
+          أشرت إلى النجوم وقلت: هذه لك وهذه لي
+        </p>
+        <button class="gbtn fu" onclick="go(10)" style="position:relative;z-index:2;">💛 الختام</button>
+      </div>
+    </section>
+
+    <!-- S11: FINAL -->
+    <section id="s11">
+      <span class="final-moon fu">🌙</span>
+      <div class="final-eid fu">عيد مبارك حبيبي</div>
+      <div class="final-sub fu">✦ كل عام وأنت بخير ✦</div>
+      <div class="orn fu"><span></span>❧ ✦ ❧<span></span></div>
+      <p class="final-body fu">
+        في كل عيد يمر، يزداد قلبي امتناناً<br>
+        لأن <b>الله أعطاني إياك</b> —<br>
+        أجمل هدية في هذه الدنيا
+      </p>
+      <button class="celebrate-btn fu" onclick="celebrate()">✦ احتفل معي ✦</button>
+    </section>
+
+  </div><!-- end #main -->
+
+  <script src="script.js"></script>
+</body>
+
+</html>
