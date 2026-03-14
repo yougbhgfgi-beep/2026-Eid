@@ -68,9 +68,9 @@ class Particle {
     this.d = isClick ? .022 : (.003 + Math.random() * .004);
     this.rot = Math.random() * Math.PI * 2;
     this.rs = (Math.random() - .5) * .06;
-    // Gold and emerald palette
+    // Magenta and Purple palette
     const r = Math.random();
-    this.col = r < .5 ? '#c8922a' : r < .7 ? '#e8b84b' : r < .85 ? '#f5d07a' : '#c0e0b0';
+    this.col = r < .5 ? '#a4167a' : r < .7 ? '#d62d9e' : r < .85 ? '#ff4db8' : '#ffffff';
     this.type = Math.random() < .4 ? 'star' : Math.random() < .6 ? 'crescent' : 'dot';
   }
   update() {
@@ -140,7 +140,7 @@ document.getElementById('pwIn').addEventListener('keydown', e => { if (e.key ===
 /* ══════════════════════════
    SECTIONS & NAV
 ══════════════════════════ */
-const SECS = ['s1', 's2', 's3', 's4', 's5', 's6', 's7', 's8', 's9', 's10', 's11'];
+const SECS = ['s1', 's2', 's3', 's4', 's5', 's6', 's7', 's8', 's9', 's-photos', 's10', 's11'];
 function go(i) { document.getElementById(SECS[i])?.scrollIntoView({ behavior: 'smooth' }); }
 
 /* ══════════════════════════
@@ -267,7 +267,7 @@ function shootFireworks() {
   fwC = document.getElementById('fwC');
   fwC.width = fwC.offsetWidth || innerWidth; fwC.height = fwC.offsetHeight || innerHeight;
   fwX = fwC.getContext('2d'); fwOn = true;
-  const cols = ['#c8922a', '#e8b84b', '#f5d07a', '#ffffff', '#c0e0b0', '#a0d0b0'];
+  const cols = ['#a4167a', '#d62d9e', '#ff4db8', '#ffffff', '#6b1a4a', '#a0226b'];
   let n = 0;
   const iv = setInterval(() => {
     if (n >= 10) { clearInterval(iv); setTimeout(() => { fwOn = false; }, 3000); return; }
@@ -292,18 +292,18 @@ function shootFireworks() {
 }
 
 /* ══════════════════════════
-   FANOOS / GIFT
+   HEART / GIFT
 ══════════════════════════ */
 let fOpen = false;
-function openFanoos() {
+function openHeart() {
   if (fOpen) return; fOpen = true;
-  document.getElementById('fanoos').classList.add('opened');
+  document.getElementById('heart').classList.add('opened');
   setTimeout(() => document.getElementById('giftOverlay').classList.add('show'), 700);
   for (let i = 0; i < 30; i++) setTimeout(() => spawnGold(Math.random() * innerWidth, Math.random() * innerHeight * .6), i * 60);
 }
 function closeGift() {
   fOpen = false;
-  document.getElementById('fanoos').classList.remove('opened');
+  document.getElementById('heart').classList.remove('opened');
   document.getElementById('giftOverlay').classList.remove('show');
 }
 
@@ -318,7 +318,7 @@ function initStarCanvas() {
     x: Math.random() * sc.width, y: Math.random() * sc.height,
     r: .3 + Math.random() * 1.8, t: Math.random() * Math.PI * 2,
     sp: .008 + Math.random() * .02,
-    col: Math.random() < .6 ? '255,255,255' : Math.random() < .5 ? '200,146,42' : '192,224,176',
+    col: Math.random() < .6 ? '255,255,255' : Math.random() < .5 ? '164,22,122' : '214,45,158',
   }));
   const shots = [];
   setInterval(() => shots.push({
@@ -338,7 +338,7 @@ function initStarCanvas() {
     });
     // big crescent
     sx.save(); sx.globalAlpha = .12;
-    sx.fillStyle = '#c8922a';
+    sx.fillStyle = '#a4167a';
     sx.beginPath(); sx.arc(moonX, moonY, 55, 0, Math.PI * 2); sx.fill();
     sx.fillStyle = 'rgba(4,6,15,0.95)';
     sx.beginPath(); sx.arc(moonX + 22, moonY, 44, 0, Math.PI * 2); sx.fill();
@@ -348,7 +348,7 @@ function initStarCanvas() {
       const s = shots[i];
       sx.save(); sx.globalAlpha = s.l * .7;
       const g = sx.createLinearGradient(s.x, s.y, s.x - s.vx * 10, s.y - s.vy * 10);
-      g.addColorStop(0, 'rgba(200,146,42,0.9)'); g.addColorStop(1, 'transparent');
+      g.addColorStop(0, 'rgba(164,22,122,0.9)'); g.addColorStop(1, 'transparent');
       sx.strokeStyle = g; sx.lineWidth = 1.5;
       sx.beginPath(); sx.moveTo(s.x, s.y); sx.lineTo(s.x - s.vx * 10, s.y - s.vy * 10); sx.stroke(); sx.restore();
       s.x += s.vx; s.y += s.vy; s.l -= .022;

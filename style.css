@@ -8,21 +8,21 @@
 }
 
 :root {
-    --night: #04060f;
-    --navy: #070c1e;
-    --indigo: #0e1535;
-    --teal: #0a2030;
-    --gold: #c8922a;
-    --gold2: #e8b84b;
-    --gold3: #f5d07a;
-    --gold-glow: rgba(200, 146, 42, 0.4);
-    --emerald: #1a6b4a;
-    --emerald2: #22a06b;
-    --cream: #fdf3e3;
-    --warm: #f0e0c0;
-    --copper: #b8762a;
-    --shadow-gold: 0 0 40px rgba(200, 146, 42, 0.35), 0 0 100px rgba(200, 146, 42, 0.12);
-    --shadow-em: 0 0 30px rgba(26, 107, 74, 0.4);
+    --night: #0a040b;
+    --navy: #1a071d;
+    --indigo: #2e0e35;
+    --teal: #300a20;
+    --gold: #a4167a;
+    --gold2: #d62d9e;
+    --gold3: #ff4db8;
+    --gold-glow: rgba(164, 22, 122, 0.4);
+    --emerald: #6b1a4a;
+    --emerald2: #a0226b;
+    --cream: #fff5fb;
+    --warm: #fde3f0;
+    --copper: #b82a76;
+    --shadow-gold: 0 0 40px rgba(164, 22, 122, 0.35), 0 0 100px rgba(164, 22, 122, 0.12);
+    --shadow-em: 0 0 30px rgba(107, 26, 74, 0.4);
 }
 
 html,
@@ -49,7 +49,7 @@ body {
     height: 22px;
     transform: translate(-50%, -50%);
     animation: curSpin 12s linear infinite;
-    filter: drop-shadow(0 0 6px rgba(200, 146, 42, 0.9));
+    filter: drop-shadow(0 0 6px #a4167ae6);
 }
 
 @keyframes curSpin {
@@ -100,9 +100,9 @@ body {
     pointer-events: none;
     opacity: 0.025;
     background-image:
-        radial-gradient(circle at 50% 50%, rgba(200, 146, 42, 0.3) 1px, transparent 1px),
-        radial-gradient(circle at 0% 50%, rgba(200, 146, 42, 0.2) 1px, transparent 1px),
-        radial-gradient(circle at 100% 50%, rgba(200, 146, 42, 0.2) 1px, transparent 1px);
+        radial-gradient(circle at 50% 50%, rgba(164, 22, 122, 0.3) 1px, transparent 1px),
+        radial-gradient(circle at 0% 50%, rgba(164, 22, 122, 0.2) 1px, transparent 1px),
+        radial-gradient(circle at 100% 50%, rgba(164, 22, 122, 0.2) 1px, transparent 1px);
     background-size: 60px 60px, 60px 60px, 60px 60px;
 }
 
@@ -133,35 +133,55 @@ body {
     align-items: center;
 }
 
-.lantern-string {
-    width: 1px;
-    background: linear-gradient(180deg, rgba(200, 146, 42, 0.4), rgba(200, 146, 42, 0.1));
+.heart-string {
+    width: 2px;
+    background: linear-gradient(180deg, var(--gold), transparent);
     height: var(--sh, 60px);
 }
 
-.lantern-body {
-    width: var(--lw, 36px);
-    height: var(--lh, 52px);
-    background: radial-gradient(ellipse at 40% 30%, rgba(255, 220, 100, 0.25) 0%, transparent 60%),
-        linear-gradient(180deg, var(--lc1, #8B0000) 0%, var(--lc2, #5a0000) 100%);
-    border-radius: 40% 40% 50% 50%;
+.heart-mini {
+    width: 20px;
+    height: 20px;
+    background: var(--gold);
     position: relative;
-    box-shadow: 0 0 15px var(--lglow, rgba(255, 100, 0, 0.4)), inset 0 0 10px rgba(0, 0, 0, 0.3);
-    animation: lanternSwing var(--lspd, 4s) ease-in-out infinite;
-    transform-origin: top center;
+    transform: rotate(-45deg);
+    box-shadow: 0 0 10px var(--gold-glow);
+    animation: MiniHeartBeat var(--lspd, 4s) ease-in-out infinite;
 }
 
-@keyframes lanternSwing {
+.heart-mini::before,
+.heart-mini::after {
+    content: '';
+    width: 20px;
+    height: 20px;
+    background: var(--gold);
+    border-radius: 50%;
+    position: absolute;
+}
+
+.heart-mini::before {
+    top: -10px;
+    left: 0;
+}
+
+.heart-mini::after {
+    left: 10px;
+    top: 0;
+}
+
+@keyframes MiniHeartBeat {
 
     0%,
     100% {
-        transform: rotate(var(--ra, -4deg));
+        transform: rotate(-45deg) scale(1);
     }
 
     50% {
-        transform: rotate(var(--rb, 4deg));
+        transform: rotate(-45deg) scale(1.2);
     }
 }
+
+/* removed old lantern animations */
 
 .lantern-body::before {
     content: '';
@@ -1659,15 +1679,129 @@ h1 {
     font-weight: 400;
 }
 
+/* ══════════════════════════════════════
+   PHOTO SECTION
+══════════════════════════════════════ */
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    width: 100%;
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.photo-card {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    aspect-ratio: 4/5;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(164, 22, 122, 0.2);
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.photo-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+}
+
+.photo-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--gold2);
+}
+
+.photo-card:hover img {
+    transform: scale(1.1);
+}
+
+.photo-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(164, 22, 122, 0.6), transparent);
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+
+.photo-card:hover .photo-overlay {
+    opacity: 1;
+}
+
+/* ══════════════════════════════════════
+   HEART COMPONENT (REPLACING LANTERN)
+══════════════════════════════════════ */
+.heart-wrap {
+    width: 150px;
+    height: 150px;
+    margin: 30px auto;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.3s;
+}
+
+.heart-body {
+    width: 100px;
+    height: 100px;
+    background: var(--gold);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    animation: heartBeat 1.5s ease-in-out infinite;
+    box-shadow: 0 0 30px var(--gold-glow);
+}
+
+.heart-body::before,
+.heart-body::after {
+    content: '';
+    width: 100px;
+    height: 100px;
+    background: var(--gold);
+    border-radius: 50%;
+    position: absolute;
+}
+
+.heart-body::before {
+    top: -50px;
+    left: 0;
+}
+
+.heart-body::after {
+    left: 50px;
+    top: 0;
+}
+
+@keyframes heartBeat {
+
+    0%,
+    100% {
+        transform: translate(-50%, -50%) rotate(-45deg) scale(1);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) rotate(-45deg) scale(1.15);
+    }
+}
+
+.heart-wrap.opened .heart-body {
+    animation: none;
+    transform: translate(-50%, -50%) rotate(-45deg) scale(2);
+    opacity: 0;
+    transition: 0.8s;
+}
+
 .celebrate-btn {
     padding: 16px 48px;
-    background: rgba(200, 146, 42, 0.06);
-    border: 1px solid rgba(200, 146, 42, .28);
+    background: rgba(164, 22, 122, 0.1);
+    border: 1px solid rgba(164, 22, 122, 0.3);
     color: var(--gold3);
     font-family: 'Scheherazade New', serif;
     font-size: 1.3em;
     cursor: none;
-    transition: all .45s;
+    transition: all 0.45s;
     letter-spacing: .12em;
 }
 
@@ -1695,7 +1829,7 @@ h1 {
     width: 5px;
     height: 5px;
     border-radius: 50%;
-    background: rgba(200, 146, 42, .15);
+    background: rgba(164, 22, 122, .15);
     cursor: none;
     transition: all .4s;
     position: relative;
@@ -1710,13 +1844,13 @@ h1 {
     width: 13px;
     height: 13px;
     border-radius: 50%;
-    border: 1px solid rgba(200, 146, 42, .3);
+    border: 1px solid rgba(164, 22, 122, .3);
     transition: .4s;
 }
 
 .nd.a {
     background: var(--gold);
-    box-shadow: 0 0 8px rgba(200, 146, 42, .7);
+    box-shadow: 0 0 8px rgba(164, 22, 122, .7);
 }
 
 .nd.a::before {
@@ -1732,7 +1866,7 @@ h1 {
     left: 50%;
     transform: translateX(-50%) translateY(18px);
     background: rgba(4, 6, 15, .94);
-    border: 1px solid rgba(200, 146, 42, .18);
+    border: 1px solid rgba(164, 22, 122, .18);
     padding: 12px 28px;
     z-index: 9000;
     font-family: 'Amiri', serif;
@@ -1788,7 +1922,7 @@ h1 {
         /* Semi-transparent */
         font-family: 'Amiri', serif;
         color: var(--gold);
-        text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+        text-shadow: 0 0 10px rgba(164, 22, 122, 0.4);
         user-select: none;
         /* Prevent selection */
         -webkit-user-select: none;

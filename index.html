@@ -24,39 +24,27 @@
   <canvas id="partC"></canvas>
   <div id="patternOverlay"></div>
 
-  <!-- LANTERNS LEFT -->
+  <!-- HEARTS LEFT -->
   <div class="lantern-wrap left">
-    <div class="lantern" style="left:15px;top:0">
-      <div class="lantern-string" style="--sh:50px"></div>
-      <div class="lantern-body"
-        style="--lw:34px;--lh:50px;--lc1:#8B0000;--lc2:#5a0000;--lglow:rgba(255,80,0,0.4);--lspd:4.5s;--ra:-5deg;--rb:5deg;">
-      </div>
-      <div class="lantern-glow" style="--lw:34px;--lglow:rgba(255,80,0,0.2)"></div>
+    <div class="lantern" style="left:20px;top:0">
+      <div class="heart-string" style="--sh:60px"></div>
+      <div class="heart-mini" style="--lspd:3s"></div>
     </div>
-    <div class="lantern" style="left:65px;top:0">
-      <div class="lantern-string" style="--sh:80px"></div>
-      <div class="lantern-body"
-        style="--lw:28px;--lh:42px;--lc1:#1a4a00;--lc2:#0d2e00;--lglow:rgba(100,200,0,0.3);--lspd:5.5s;--ra:-3deg;--rb:4deg;">
-      </div>
-      <div class="lantern-glow" style="--lw:28px;--lglow:rgba(100,200,0,0.15)"></div>
+    <div class="lantern" style="left:70px;top:0">
+      <div class="heart-string" style="--sh:100px"></div>
+      <div class="heart-mini" style="--lspd:4.5s"></div>
     </div>
   </div>
 
-  <!-- LANTERNS RIGHT -->
+  <!-- HEARTS RIGHT -->
   <div class="lantern-wrap right">
-    <div class="lantern" style="right:15px;top:0">
-      <div class="lantern-string" style="--sh:65px"></div>
-      <div class="lantern-body"
-        style="--lw:32px;--lh:48px;--lc1:#7a4a00;--lc2:#4a2e00;--lglow:rgba(200,146,42,0.4);--lspd:5s;--ra:4deg;--rb:-4deg;">
-      </div>
-      <div class="lantern-glow" style="--lw:32px;--lglow:rgba(200,146,42,0.2)"></div>
+    <div class="lantern" style="right:20px;top:0">
+      <div class="heart-string" style="--sh:80px"></div>
+      <div class="heart-mini" style="--lspd:3.5s"></div>
     </div>
-    <div class="lantern" style="right:65px;top:0">
-      <div class="lantern-string" style="--sh:40px"></div>
-      <div class="lantern-body"
-        style="--lw:26px;--lh:40px;--lc1:#4a0050;--lc2:#2e0032;--lglow:rgba(180,0,200,0.3);--lspd:6s;--ra:-4deg;--rb:4deg;">
-      </div>
-      <div class="lantern-glow" style="--lw:26px;--lglow:rgba(180,0,200,0.15)"></div>
+    <div class="lantern" style="right:70px;top:0">
+      <div class="heart-string" style="--sh:50px"></div>
+      <div class="heart-mini" style="--lspd:5s"></div>
     </div>
   </div>
 
@@ -107,6 +95,7 @@
     <div class="nd" onclick="go(8)"></div>
     <div class="nd" onclick="go(9)"></div>
     <div class="nd" onclick="go(10)"></div>
+    <div class="nd" onclick="go(11)"></div>
   </div>
 
   <!-- ════════════ MAIN ════════════ -->
@@ -278,28 +267,45 @@
         المفاجأة</button>
     </section>
 
-    <!-- S9: GIFT / FANOOS -->
+    <!-- S9: GIFT / HEART -->
     <section id="s9">
-      <div class="tag fu">🏮 مفاجأة</div>
-      <h1 class="fu">فانوسك الخاص</h1>
-      <p class="arabic-body fu">اضغط على الفانوس لتفتح المفاجأة</p>
-      <div class="fanoos-wrap fu" id="fanoos" onclick="openFanoos()">
-        <div class="fanoos-top"></div>
-        <div class="fanoos-string"></div>
-        <div class="fanoos-body">🏮</div>
-        <div class="fanoos-bot"></div>
-        <div class="fanoos-glow"></div>
+      <div class="tag fu">💖 مفاجأة</div>
+      <h1 class="fu">قلب من أجلك</h1>
+      <p class="arabic-body fu">اضغط على القلب لترى ما بداخله</p>
+      <div class="heart-wrap fu" id="heart" onclick="openHeart()">
+        <div class="heart-body"></div>
       </div>
       <div class="gift-msg-overlay" id="giftOverlay">
         <div class="gift-msg-text">
-          <em>أنت نور حياتي</em><br><br>
-          كما يضيء الفانوس الليل المظلم —<br>
-          أضأت أنت كل زوايا قلبي وحياتي.<br><br>
-          كل عام وأنت فرحتي الكبرى 🌙✨
+          <em>أنت نبض حياتي</em><br><br>
+          كما ينبض هذا القلب بحبك —<br>
+          أشرقت أنت في دنياي لتجعل لكل شيء معنى.<br><br>
+          كل عام وأنت فرحتي ويدي التي لا أتركها 🌙💖
         </div>
         <button class="close-msg" onclick="event.stopPropagation();closeGift()">✦ أغلق</button>
       </div>
-      <button class="gbtn fu" style="margin-top:20px" onclick="go(9)">🌌 سماء عيدنا</button>
+      <button class="gbtn fu" style="margin-top:20px" onclick="go(9)">📸 ذكرياتنا المصورة</button>
+    </section>
+
+    <!-- S9.5: PHOTOS -->
+    <section id="s-photos">
+      <div class="tag fu">📸 لحظاتنا</div>
+      <h1 class="fu">أجمل الصور</h1>
+      <div class="photo-grid fu">
+        <div class="photo-card">
+          <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=800" alt="عيد">
+          <div class="photo-overlay"></div>
+        </div>
+        <div class="photo-card">
+          <img src="https://images.unsplash.com/photo-1516589174184-c685ca6d5c50?q=80&w=800" alt="رومانسية">
+          <div class="photo-overlay"></div>
+        </div>
+        <div class="photo-card">
+          <img src="https://images.unsplash.com/photo-1513271054670-4462584218f6?q=80&w=800" alt="فخامة">
+          <div class="photo-overlay"></div>
+        </div>
+      </div>
+      <button class="gbtn fu" onclick="go(10)">🌌 سماء عيدنا</button>
     </section>
 
     <!-- S10: STAR MAP -->
